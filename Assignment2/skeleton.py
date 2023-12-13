@@ -47,7 +47,7 @@ class YourAlgorithm:
         # cooling rate
         cooling_rate = 0.99
         
-        freezing_temperature = 0.1
+        freezing_temperature = 0.001
         
         while (temperature > freezing_temperature):
             state
@@ -60,11 +60,11 @@ class YourAlgorithm:
                 #accept this potential next state
                 state = potential_next_state
             else:
-                score_delta = score_potential_next_state - score_state
+                score_delta = score_state - score_potential_next_state
                 # print(score_delta)
                 
                 
-                probability = 1 / (1 + np.exp(-score_delta / temperature))
+                probability = np.exp(-score_delta / temperature)
                 # print(probability)
                 random_number = np.random.uniform(1, 0, 1)
                 
@@ -72,7 +72,6 @@ class YourAlgorithm:
                     state = potential_next_state
                     
             temperature = temperature * cooling_rate
-            print(temperature)
                 
         
         
@@ -85,7 +84,7 @@ class YourAlgorithm:
         
         
         # calculate the number of states or iterations for each temperature
-        
+        print(problem.__call__(state))
         
         
         
